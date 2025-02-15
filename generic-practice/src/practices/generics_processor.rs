@@ -1,4 +1,5 @@
-pub trait Processor<T> {
+
+/*pub trait Processor<T> {
     fn process(&self, value: T) -> T;
 }
 
@@ -27,3 +28,4 @@ pub fn get_processor(data: &str) -> Box<dyn Processor<String>> {
         Box::new(StrProcesor)
     }
 }
+*/
