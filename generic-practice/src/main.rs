@@ -3,6 +3,7 @@ use generic_practice::practices::{
     generics_data::BoxValue,
     generics_trait::{UpperCaseFormatter, NumberFormatter, print_formatted},
     generics_sort::get_sorter,
+    generics_processor::{IntProcessor, get_processor},
 };
 
 fn main() {
@@ -26,4 +27,10 @@ fn main() {
     let sorter = get_sorter(false);
     sorter.sorter(&mut values);
     println!("降順: {:?}", values);
+
+    let int_processor = IntProcessor;
+    println!("{:?}", int_processor.process(10));
+
+    let processor = get_processor("str");
+    println!("{:?}", processor.process("hello"));
 }
