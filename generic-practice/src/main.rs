@@ -5,6 +5,7 @@ use generic_practice::practices::{
     generics_sort::get_sorter,
     //generics_processor::{IntProcessor, get_processor},
     generics_calculator::get_calculator,
+    generics_converter::{get_int_converter, get_str_converter, Converter},
 };
 
 fn main() {
@@ -42,4 +43,10 @@ fn main() {
 
     let calc = get_calculator("mul");
     println!("{:?}", calc.calculate(3, 5));
+
+    let converter = get_int_converter();
+    println!("{:?}", converter.convert(25));
+
+    let converter = get_str_converter();
+    println!("{:?}", converter.convert("rust".to_string()));
 }
