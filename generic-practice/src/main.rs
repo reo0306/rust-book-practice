@@ -6,6 +6,7 @@ use generic_practice::practices::{
     //generics_processor::{IntProcessor, get_processor},
     generics_calculator::get_calculator,
     generics_converter::{get_int_converter, get_str_converter, Converter},
+    generics_rectangle::{get_int_shape, get_float_shape},
 };
 
 fn main() {
@@ -49,4 +50,10 @@ fn main() {
 
     let converter = get_str_converter();
     println!("{:?}", converter.convert("rust".to_string()));
+
+    let shape = get_int_shape();
+    println!("{:?}", shape.area());
+
+    let shape = get_float_shape();
+    println!("{:?}", shape.area());
 }
