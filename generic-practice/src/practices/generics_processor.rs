@@ -1,31 +1,30 @@
 
-/*pub trait Processor<T> {
+pub trait Processor<T> {
     fn process(&self, value: T) -> T;
 }
 
 #[derive(Debug)]
-pub struct IntProcessor;
+pub struct Doubler;
 
-impl Processor<i32> for IntProcessor {
+impl Processor<i32> for Doubler{
     fn process(&self, value: i32) -> i32 {
         value * 2
     }
 }
 
 #[derive(Debug)]
-pub struct StrProcesor;
+pub struct Reverser;
 
-impl Processor<String> for StrProcesor {
+impl Processor<String> for Reverser {
     fn process(&self, value: String) -> String {
-        value.to_uppercase()
+        value.chars().rev().collect::<String>()
     }
 }
 
-pub fn get_processor(data: &str) -> Box<dyn Processor<String>> {
-    if data == "int" {
-        Box::new(IntProcessor) as Box<dyn Processor<String>>
-    } else {
-        Box::new(StrProcesor)
-    }
+pub fn get_int_processor() -> Box<dyn Processor<i32>> {
+    Box::new(Doubler)
 }
-*/
+
+pub fn get_str_processor() -> Box<dyn Processor<String>> {
+    Box::new(Reverser)
+}

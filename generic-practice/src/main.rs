@@ -3,7 +3,7 @@ use generic_practice::practices::{
     generics_data::BoxValue,
     generics_trait::{UpperCaseFormatter, NumberFormatter, print_formatted},
     generics_sort::get_sorter,
-    //generics_processor::{IntProcessor, get_processor},
+    generics_processor::{get_int_processor, get_str_processor},
     generics_calculator::get_calculator,
     generics_converter::{get_int_converter, get_str_converter, Converter},
     generics_rectangle::{get_int_shape, get_float_shape},
@@ -31,13 +31,11 @@ fn main() {
     sorter.sorter(&mut values);
     println!("降順: {:?}", values);
 
-    /*
-    let int_processor = IntProcessor;
-    println!("{:?}", int_processor.process(10));
+    let processor = get_int_processor();
+    println!("{:?}", processor.process(10));
 
-    let processor = get_processor("str");
-    println!("{:?}", processor.process("hello"));
-    */
+    let processor = get_str_processor();
+    println!("{:?}", processor.process("hello".to_string()));
 
     let calc = get_calculator("add");
     println!("{:?}", calc.calculate(3, 5));
@@ -52,8 +50,8 @@ fn main() {
     println!("{:?}", converter.convert("rust".to_string()));
 
     let shape = get_int_shape();
-    println!("{:?}", shape.area());
+    println!("{}", shape.area());
 
     let shape = get_float_shape();
-    println!("{:?}", shape.area());
+    println!("{}", shape.area());
 }
