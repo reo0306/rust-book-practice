@@ -6,3 +6,5 @@ pub mod generics_processor;
 pub mod generics_calculator;
 pub mod generics_converter;
 pub mod generics_rectangle;
+pub mod generics_operation;
+pub mod generics_filter;
