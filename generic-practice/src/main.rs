@@ -9,6 +9,8 @@ use generic_practice::practices::{
     generics_rectangle::{get_int_shape, get_float_shape},
     generics_operation::apply_operation,
     generics_filter::filter_array,
+    generics_apply::apply_operation2,
+    generics_sequence::generate_sequence,
 };
 
 fn main() {
@@ -67,17 +69,6 @@ fn main() {
     let increment_result = apply_operation(&numbers, increment);
     println!("{:?}", increment_result);
 
-    /*
-    let numbers: [i32; 5] = [1, 2, 3, 4, 5];
-    let dobule = |x| x * 2;
-    let increment = |x| x + 1;
-
-    let dobule_result = apply_operation(numbers, dobule);
-    println!("{:?}", dobule_result);
-    let increment_result = apply_operation(numbers, increment);
-    println!("{:?}", increment_result);
-    */
-
     let numbers2 = vec![1,2,3,4,5,6,7,8,9,10];
     let is_even = |x: i32| x % 2 == 0;
     let is_odd = |x: i32| x %2 != 0;
@@ -86,4 +77,16 @@ fn main() {
     println!("{:?}", even_numbers);
     let odd_numbers = filter_array(&numbers2, is_odd);
     println!("{:?}", odd_numbers);
+
+    let operations = vec![|a: i32, b: i32| a + b, |a: i32, b: i32| a * b];
+    let results = apply_operation2(3, 4, operations);
+    println!("{:?}", results);
+
+    let double = |x: i32| x * 2;
+    let square = |x: i32| x * x;
+
+    let double_sequence = generate_sequence(1, 10, 2, double);
+    println!("{:?}", double_sequence);
+    let square_sequence = generate_sequence(1, 10, 2, square);
+    println!("{:?}", square_sequence);
 }

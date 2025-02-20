@@ -8,3 +8,5 @@ pub mod generics_converter;
 pub mod generics_rectangle;
 pub mod generics_operation;
 pub mod generics_filter;
+pub mod generics_apply;
+pub mod generics_sequence;
