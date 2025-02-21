@@ -1,3 +1,4 @@
+
 use generic_practice::practices::{
     generics::swap,
     generics_data::BoxValue,
@@ -11,6 +12,7 @@ use generic_practice::practices::{
     generics_filter::filter_array,
     generics_apply::apply_operation2,
     generics_sequence::generate_sequence,
+    generics_group_by::{group_by_key, Item},
 };
 
 fn main() {
@@ -89,4 +91,42 @@ fn main() {
     println!("{:?}", double_sequence);
     let square_sequence = generate_sequence(1, 10, 2, square);
     println!("{:?}", square_sequence);
+
+    let data = vec![
+        Item {
+            id: 1,
+            categroy: "A".to_string(),
+            value: 100,
+        },
+        Item {
+            id: 2,
+            categroy: "B".to_string(),
+            value: 200,
+        },
+        Item {
+            id: 3,
+            categroy: "A".to_string(),
+            value: 150,
+        },
+        Item {
+            id: 4,
+            categroy: "B".to_string(),
+            value: 250,
+        },
+        Item {
+            id: 5,
+            categroy: "C".to_string(),
+            value: 300,
+        },
+    ];
+
+    let group_by_category = group_by_key(data.clone(), |item| item.categroy.clone());
+    println!("Categroy {:?}", group_by_category);
+
+    let group_by_id = group_by_key(data.clone(), |item| item.id);
+    println!("Id {:?}", group_by_id);
+
+    let group_by_value = group_by_key(data.clone(), |item| item.value);
+    println!("Value {:?}", group_by_value);
 }
+
