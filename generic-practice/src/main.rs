@@ -13,6 +13,7 @@ use generic_practice::practices::{
     generics_apply::apply_operation2,
     generics_sequence::generate_sequence,
     generics_group_by::{group_by_key, Item},
+    generics_condition::filter_by_condition,
 };
 
 fn main() {
@@ -128,5 +129,12 @@ fn main() {
 
     let group_by_value = group_by_key(data.clone(), |item| item.value);
     println!("Value {:?}", group_by_value);
-}
 
+    let data = vec![1,2,3,4,5,6,7,8,9,10];
+
+    let even_numbers = filter_by_condition(&data, |&x| x % 2 == 0);
+    println!("{:?}", even_numbers);
+
+    let greater_than_five = filter_by_condition(&data, |&x| x >= 5);
+    println!("{:?}", greater_than_five);
+}

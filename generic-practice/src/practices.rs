@@ -11,3 +11,4 @@ pub mod generics_filter;
 pub mod generics_apply;
 pub mod generics_sequence;
 pub mod generics_group_by;
+pub mod generics_condition;
