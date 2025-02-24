@@ -138,4 +138,9 @@ fn main() {
 
     let greater_than_five = filter_by_condition(&data, |&x| x >= 5);
     println!("{:?}", greater_than_five);
+
+    let words = vec!["apple", "banana", "apricot", "blueberry", "avocado"];
+
+    let filtered = filter_by_prefix(&words, "a");
+    println!("{:?}", filtered);
 }
