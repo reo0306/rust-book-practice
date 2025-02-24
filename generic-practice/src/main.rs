@@ -14,6 +14,7 @@ use generic_practice::practices::{
     generics_sequence::generate_sequence,
     generics_group_by::{group_by_key, Item},
     generics_condition::filter_by_condition,
+    generics_prefix::filter_by_prefix,
 };
 
 fn main() {
