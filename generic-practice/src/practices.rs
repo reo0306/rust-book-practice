@@ -13,3 +13,5 @@ pub mod generics_sequence;
 pub mod generics_group_by;
 pub mod generics_condition;
 pub mod generics_prefix;
+pub mod parallel_data;
+pub mod parallel_counter;

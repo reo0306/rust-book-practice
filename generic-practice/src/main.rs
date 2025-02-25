@@ -1,3 +1,5 @@
+use std::rc::Rc;
+use std::cell::RefCell;
 
 use generic_practice::practices::{
     generics::swap,
@@ -15,6 +17,8 @@ use generic_practice::practices::{
     generics_group_by::{group_by_key, Item},
     generics_condition::filter_by_condition,
     generics_prefix::filter_by_prefix,
+    parallel_data::ParallelData,
+    parallel_counter::ParallelCounter,
 };
 
 fn main() {
@@ -143,4 +147,17 @@ fn main() {
 
     let filtered = filter_by_prefix(&words, "a");
     println!("{:?}", filtered);
+
+    let data = Rc::new(ParallelData { value: 42 });
+    let a = data.clone();
+    let b = data.clone();
+    println!("{}", b.value);
+
+    let counter = Rc::new(RefCell::new(ParallelCounter { value: 0}));
+    let counter1 = counter.clone();
+    let counter2 = counter.clone();
+    counter1.borrow_mut().value = 1;
+    println!("{}", counter1.borrow().value);
+    counter2.borrow_mut().value = 2;
+    println!("{}", counter2.borrow().value);
 }
