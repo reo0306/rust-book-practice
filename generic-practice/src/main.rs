@@ -1,5 +1,8 @@
 use std::rc::Rc;
 use std::cell::RefCell;
+use std::sync::{Arc, Mutex};
+use std::sync::atomic::{AtomicI32, Ordering};
+use std::thread;
 
 use generic_practice::practices::{
     generics::swap,
@@ -19,6 +22,8 @@ use generic_practice::practices::{
     generics_prefix::filter_by_prefix,
     parallel_data::ParallelData,
     parallel_counter::ParallelCounter,
+    parallel_shared::ParallelSharedCounter,
+    parallel_arc_mutex::MultiSharedCounter,
 };
 
 fn main() {
@@ -160,4 +165,51 @@ fn main() {
     println!("{}", counter1.borrow().value);
     counter2.borrow_mut().value = 2;
     println!("{}", counter2.borrow().value);
+
+    let shared_counter = Rc::new(RefCell::new(ParallelSharedCounter::new()));
+    let shared_counter1 = shared_counter.clone();
+    let shared_counter2 = shared_counter.clone();
+
+    shared_counter1.borrow_mut().increment();
+    shared_counter2.borrow_mut().increment();
+
+    println!("{}", shared_counter.borrow().get_value());
+
+    let multi_counter = Arc::new(Mutex::new(MultiSharedCounter::new()));
+
+    let mut threads = Vec::new();
+
+    for _ in 0..5 {
+        let multi_counter_clone = Arc::clone(&multi_counter);
+        let handle = thread::spawn(move || {
+            let mut shared = multi_counter_clone.lock().unwrap();
+            shared.increment();
+        });
+        threads.push(handle);
+    }
+
+    for thread in threads {
+        thread.join().unwrap();
+    }
+
+    let result = multi_counter.lock().unwrap();
+    println!("Final Counter Value: {}", result.get_value());
+
+    let multi_counter2 = Arc::new(AtomicI32::new(0));
+
+    let mut threads2 = Vec::new();
+
+    for _ in 0..5 {
+        let multi_counter_clone2 = Arc::clone(&multi_counter2);
+        let handle2 = thread::spawn(move || {
+            multi_counter_clone2.fetch_add(1, Ordering::SeqCst);
+        });
+        threads2.push(handle2);
+    }
+
+    for thread2 in threads2 {
+        thread2.join().unwrap();
+    }
+
+    println!("Final Counter Value2: {}", multi_counter2.load(Ordering::SeqCst));
 }
