@@ -20,6 +20,7 @@ use generic_practice::practices::{
     generics_group_by::{group_by_key, Item},
     generics_condition::filter_by_condition,
     generics_prefix::filter_by_prefix,
+    generics_stack::Stack,
     parallel_data::ParallelData,
     parallel_counter::ParallelCounter,
     parallel_shared::ParallelSharedCounter,
@@ -202,7 +203,7 @@ fn main() {
     for _ in 0..5 {
         let multi_counter_clone2 = Arc::clone(&multi_counter2);
         let handle2 = thread::spawn(move || {
-            multi_counter_clone2.fetch_add(1, Ordering::SeqCst);
+            multi_counter_clone2.fetch_add(10, Ordering::SeqCst);
         });
         threads2.push(handle2);
     }
@@ -212,4 +213,10 @@ fn main() {
     }
 
     println!("Final Counter Value2: {}", multi_counter2.load(Ordering::SeqCst));
+
+    let mut stack = Stack::new();
+    stack.push(10);
+    stack.push(20);
+    println!("{:?}", stack.pop().unwrap());
+    println!("{}", stack.len());
 }
