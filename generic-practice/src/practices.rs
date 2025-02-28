@@ -15,6 +15,7 @@ pub mod generics_condition;
 pub mod generics_prefix;
 pub mod generics_stack;
 pub mod generics_kvs;
+pub mod generics_cache;
 pub mod parallel_data;
 pub mod parallel_counter;
 pub mod parallel_shared;

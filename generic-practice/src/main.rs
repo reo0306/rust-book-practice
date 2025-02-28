@@ -3,6 +3,7 @@ use std::cell::RefCell;
 use std::sync::{Arc, Mutex};
 use std::sync::atomic::{AtomicI32, Ordering};
 use std::thread;
+use std::collections::HashMap;
 
 use generic_practice::practices::{
     generics::swap,
@@ -22,6 +23,7 @@ use generic_practice::practices::{
     generics_prefix::filter_by_prefix,
     generics_kvs::KeyValueStore,
     generics_stack::Stack,
+    generics_cache::Cache,
     parallel_data::ParallelData,
     parallel_counter::ParallelCounter,
     parallel_shared::ParallelSharedCounter,
@@ -225,4 +227,32 @@ fn main() {
     kv.set("name".to_string(), "Alice".to_string());
     println!("{}", kv.get(&"name".to_string()).unwrap());
     println!("{}", kv.has(&"name".to_string()));
+
+    let cache = Rc::new(RefCell::new(Cache::<String, HashMap<String, String>>::new()));
+    let cache1 = cache.clone();
+    let cache2 = cache.clone();
+
+    {
+        let mut cache_data = cache1.borrow_mut();
+        let entry1 = cache_data.storage.entry("user".to_string()).or_insert(HashMap::new());
+        entry1.insert("name".to_string(), "Alice".to_string());
+    }
+    //let mut cache_data = cache1.borrow_mut();
+    //let entry1 = cache_data.storage.entry("user".to_string()).or_insert(HashMap::new());
+    //entry1.insert("name".to_string(), "Alice".to_string());
+    //cache_data1.borrow_mut().set("user".to_string(), data1.clone());
+
+    {
+        let mut cache_data = cache2.borrow_mut();
+        let entry2 = cache_data.storage.entry("user".to_string()).or_insert(HashMap::new());
+        entry2.insert("age".to_string(), "30".to_string());
+    }
+    //let mut cache_data = cache2.borrow_mut();
+    //let entry2 = cache_data.storage.entry("user".to_string()).or_insert(HashMap::new());
+    //entry2.insert("age".to_string(), "30".to_string());
+    //cache2.borrow_mut().set("user".to_string(), data1.clone());
+
+    println!("{:?}", cache.borrow().get(&"user".to_string()));
+    println!("{}", cache.borrow().has(&"user".to_string()));
+    println!("{}", cache.borrow().has(&"nonexistent".to_string()));
 }
