@@ -20,6 +20,7 @@ use generic_practice::practices::{
     generics_group_by::{group_by_key, Item},
     generics_condition::filter_by_condition,
     generics_prefix::filter_by_prefix,
+    generics_kvs::KeyValueStore,
     generics_stack::Stack,
     parallel_data::ParallelData,
     parallel_counter::ParallelCounter,
@@ -219,4 +220,9 @@ fn main() {
     stack.push(20);
     println!("{:?}", stack.pop().unwrap());
     println!("{}", stack.len());
+
+    let mut kv = KeyValueStore::new();
+    kv.set("name".to_string(), "Alice".to_string());
+    println!("{}", kv.get(&"name".to_string()).unwrap());
+    println!("{}", kv.has(&"name".to_string()));
 }
