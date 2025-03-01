@@ -24,6 +24,7 @@ use generic_practice::practices::{
     generics_kvs::KeyValueStore,
     generics_stack::Stack,
     generics_cache::Cache,
+    generics_number_stack::NumberStack,
     parallel_data::ParallelData,
     parallel_counter::ParallelCounter,
     parallel_shared::ParallelSharedCounter,
@@ -255,4 +256,10 @@ fn main() {
     println!("{:?}", cache.borrow().get(&"user".to_string()));
     println!("{}", cache.borrow().has(&"user".to_string()));
     println!("{}", cache.borrow().has(&"nonexistent".to_string()));
+
+    let mut number_stack = NumberStack::new();
+    number_stack.push(10.0);
+    number_stack.push(5.5);
+    number_stack.push(3.2);
+    println!("{}", number_stack.sum());
 }
