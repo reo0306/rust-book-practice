@@ -29,6 +29,7 @@ use generic_practice::practices::{
     parallel_counter::ParallelCounter,
     parallel_shared::ParallelSharedCounter,
     parallel_arc_mutex::MultiSharedCounter,
+    parallel_node::LinkedList,
 };
 
 fn main() {
@@ -262,4 +263,10 @@ fn main() {
     number_stack.push(5.5);
     number_stack.push(3.2);
     println!("{}", number_stack.sum());
+
+    let mut list = LinkedList::new();
+    list.append(10);
+    list.append(20);
+    list.append(30);
+    list.print();
 }
