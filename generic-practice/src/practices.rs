@@ -22,3 +22,4 @@ pub mod parallel_counter;
 pub mod parallel_shared;
 pub mod parallel_arc_mutex;
 pub mod parallel_node;
+pub mod parallel_bst;

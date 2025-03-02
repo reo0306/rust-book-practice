@@ -30,6 +30,7 @@ use generic_practice::practices::{
     parallel_shared::ParallelSharedCounter,
     parallel_arc_mutex::MultiSharedCounter,
     parallel_node::LinkedList,
+    parallel_bst::BinaryTree,
 };
 
 fn main() {
@@ -269,4 +270,12 @@ fn main() {
     list.append(20);
     list.append(30);
     list.print();
+
+    let mut tree = BinaryTree::new();
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(15);
+    tree.insert(3);
+    tree.insert(7);
+    tree.print_in_order();
 }
