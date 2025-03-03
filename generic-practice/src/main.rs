@@ -31,6 +31,7 @@ use generic_practice::practices::{
     parallel_arc_mutex::MultiSharedCounter,
     parallel_node::LinkedList,
     parallel_bst::BinaryTree,
+    parallel_queue::SharedQueue,
 };
 
 fn main() {
@@ -278,4 +279,26 @@ fn main() {
     tree.insert(3);
     tree.insert(7);
     tree.print_in_order();
+
+    let queue = Arc::new(Mutex::new(SharedQueue::new()));
+
+    let mut threads = Vec::new();
+
+    for i in 0..5 {
+        let multi_queue_clone = Arc::clone(&queue);
+        let handle = thread::spawn(move || {
+            let mut shared = multi_queue_clone.lock().unwrap();
+            shared.enqueue(i);
+        });
+        threads.push(handle);
+    }
+
+    for thread in threads {
+        thread.join().unwrap();
+    }
+
+    let mut result = queue.lock().unwrap();
+    println!("Get Queue Params: {}", result.dequeue().unwrap());
+    println!("Get Queue Params: {}", result.dequeue().unwrap());
+    println!("Final Queue Size: {}", result.size());
 }
