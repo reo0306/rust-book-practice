@@ -32,6 +32,7 @@ use generic_practice::practices::{
     parallel_node::LinkedList,
     parallel_bst::BinaryTree,
     parallel_queue::SharedQueue,
+    parallel_counter_ex::CounterEx,
 };
 
 fn main() {
@@ -301,4 +302,25 @@ fn main() {
     println!("Get Queue Params: {}", result.dequeue().unwrap());
     println!("Get Queue Params: {}", result.dequeue().unwrap());
     println!("Final Queue Size: {}", result.size());
+
+    let counter_ex = Arc::new(Mutex::new(CounterEx::new()));
+    let mut threads = Vec::new();
+
+    for _ in 0..10 {
+        let multi_counter_ex_clone = Arc::clone(&counter_ex);
+        let handle = thread::spawn(move || {
+            for _ in 0..1000 {
+                let mut shared = multi_counter_ex_clone.lock().unwrap();
+                shared.increment();
+            }
+        });
+        threads.push(handle);
+    }
+
+    for thread in threads {
+        thread.join().unwrap();
+    }
+
+    let result = counter_ex.lock().unwrap();
+    println!("Final Counter Value: {}", result.get());
 }
