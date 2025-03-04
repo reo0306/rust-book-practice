@@ -25,3 +25,4 @@ pub mod parallel_node;
 pub mod parallel_bst;
 pub mod parallel_queue;
 pub mod parallel_counter_ex;
+pub mod parallel_stack;

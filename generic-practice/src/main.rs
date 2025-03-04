@@ -33,6 +33,7 @@ use generic_practice::practices::{
     parallel_bst::BinaryTree,
     parallel_queue::SharedQueue,
     parallel_counter_ex::CounterEx,
+    parallel_stack::ParallelStack,
 };
 
 fn main() {
@@ -323,4 +324,28 @@ fn main() {
 
     let result = counter_ex.lock().unwrap();
     println!("Final Counter Value: {}", result.get());
+
+    let stack = Arc::new(Mutex::new(ParallelStack::new()));
+    let mut threads = Vec::new();
+
+    for i in 0..10 {
+        let stack_clone = Arc::clone(&stack);
+        let handle = thread::spawn(move || {
+            let mut shared = stack_clone.lock().unwrap();
+            shared.push(i);
+        });
+        threads.push(handle);
+    }
+
+    for thread in threads {
+        thread.join().unwrap();
+    }
+
+    let mut result = stack.lock().unwrap();
+    while !result.is_empty() {
+        println!("Stack pop Value: {}", result.pop().unwrap());
+    }
+    //println!("Stack peek Value: {}", result.peek().unwrap());
+    println!("Stack is_empty Value: {}", result.is_empty());
+
 }
