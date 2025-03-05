@@ -26,3 +26,7 @@ pub mod parallel_bst;
 pub mod parallel_queue;
 pub mod parallel_counter_ex;
 pub mod parallel_stack;
+pub mod practice_type1;
+pub mod practice_type2;
+pub mod practice_type3;
+pub mod practice_type4;

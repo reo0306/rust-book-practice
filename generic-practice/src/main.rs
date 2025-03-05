@@ -34,6 +34,10 @@ use generic_practice::practices::{
     parallel_queue::SharedQueue,
     parallel_counter_ex::CounterEx,
     parallel_stack::ParallelStack,
+    practice_type1::User,
+    practice_type2::Product,
+    practice_type3::Rectangle,
+    practice_type4::Point3D,
 };
 
 fn main() {
@@ -348,4 +352,16 @@ fn main() {
     //println!("Stack peek Value: {}", result.peek().unwrap());
     println!("Stack is_empty Value: {}", result.is_empty());
 
+    let user = User::new(1, "Alice".to_string());
+    user.display();
+
+    let product = Product::new(101, "Laptop".to_string(), 999.99);
+    product.display();
+
+    let rectangle = Rectangle::new(10.5, 5.2);
+    println!("Area: {}", rectangle.area());
+    println!("Perimeter: {}", rectangle.perimeter());
+
+    let point_3d = Point3D::new(3.0, 4.0, 5.0);
+    println!("Distance from origin: {}", point_3d.distance_from_origin());
 }
