@@ -30,3 +30,6 @@ pub mod practice_type1;
 pub mod practice_type2;
 pub mod practice_type3;
 pub mod practice_type4;
+pub mod practice_type5;
+pub mod practice_type6;
+pub mod practice_type7;

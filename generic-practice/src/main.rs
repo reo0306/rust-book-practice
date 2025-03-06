@@ -38,6 +38,9 @@ use generic_practice::practices::{
     practice_type2::Product,
     practice_type3::Rectangle,
     practice_type4::Point3D,
+    practice_type5::{DimensionCircle, DimensionRectangle, Shape},
+    practice_type6::{Logger, ConsoleLogger, FileLogger},
+    practice_type7::{Payment, CreditCardPayment, PaypalPayment},
 };
 
 fn main() {
@@ -364,4 +367,20 @@ fn main() {
 
     let point_3d = Point3D::new(3.0, 4.0, 5.0);
     println!("Distance from origin: {}", point_3d.distance_from_origin());
+
+    let circle = DimensionCircle::new(5.0);
+    let rectangle = DimensionRectangle::new(10.0, 4.0);
+    println!("Circle Area: {}", circle.area());
+    println!("Recttangle Area: {}", rectangle.area());
+
+    let console_logger = ConsoleLogger::new();
+    let file_logger = FileLogger::new();
+    console_logger.log("Hello, Rust Logger!".to_string());
+    file_logger.log("Hello, Rust Logger!".to_string());
+
+    let credit_card = CreditCardPayment::new();
+    let paypal = PaypalPayment::new();
+
+    credit_card.process_payment(100.50);
+    paypal.process_payment(100.50);
 }
