@@ -41,6 +41,7 @@ use generic_practice::practices::{
     practice_type5::{DimensionCircle, DimensionRectangle, Shape},
     practice_type6::{Logger, ConsoleLogger, FileLogger},
     practice_type7::{Payment, CreditCardPayment, PaypalPayment},
+    practice_enum1::{TransportMode, Travel},
 };
 
 fn main() {
@@ -383,4 +384,11 @@ fn main() {
 
     credit_card.process_payment(100.50);
     paypal.process_payment(100.50);
+
+    let car_travel = Travel::new(TransportMode::Car, 50.0);
+    println!("Car travel time: {} hours", car_travel.calcuate_time());
+    let bicycle_travel = Travel::new(TransportMode::Bicycle, 50.0);
+    println!("Bicycle travel time: {} hours", bicycle_travel.calcuate_time());
+    let walking_travel = Travel::new(TransportMode::Walking, 10.0);
+    println!("Walking travel time: {} hours", walking_travel.calcuate_time());
 }

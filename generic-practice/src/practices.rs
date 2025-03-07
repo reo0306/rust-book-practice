@@ -33,3 +33,4 @@ pub mod practice_type4;
 pub mod practice_type5;
 pub mod practice_type6;
 pub mod practice_type7;
+pub mod practice_enum1;
