@@ -16,3 +16,5 @@ impl Point3D {
         val.sqrt()
     }
 }
+
+// Enum, newtype, PhantomType、スレッド、チャネル、Path

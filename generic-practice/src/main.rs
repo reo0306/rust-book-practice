@@ -42,6 +42,7 @@ use generic_practice::practices::{
     practice_type6::{Logger, ConsoleLogger, FileLogger},
     practice_type7::{Payment, CreditCardPayment, PaypalPayment},
     practice_enum1::{TransportMode, Travel},
+    practice_enum2::{PaymentMethod, PaymentEx},
 };
 
 fn main() {
@@ -391,4 +392,11 @@ fn main() {
     println!("Bicycle travel time: {} hours", bicycle_travel.calcuate_time());
     let walking_travel = Travel::new(TransportMode::Walking, 10.0);
     println!("Walking travel time: {} hours", walking_travel.calcuate_time());
+
+    let payment1 = PaymentEx::new(PaymentMethod::CreditCard, 100.0, "4111111111".to_string());
+    payment1.process_payment();
+    let payment2 = PaymentEx::new(PaymentMethod::Paypal, 50.0, "user@example.com".to_string());
+    payment2.process_payment();
+    let payment3 = PaymentEx::new(PaymentMethod::Bitcoin, 0.05, "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa".to_string());
+    payment3.process_payment();
 }
