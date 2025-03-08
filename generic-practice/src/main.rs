@@ -43,6 +43,8 @@ use generic_practice::practices::{
     practice_type7::{Payment, CreditCardPayment, PaypalPayment},
     practice_enum1::{TransportMode, Travel},
     practice_enum2::{PaymentMethod, PaymentEx},
+    practice_new_type1::UserEx,
+    practice_new_type2::UserDeref,
 };
 
 fn main() {
@@ -173,7 +175,7 @@ fn main() {
     println!("{:?}", filtered);
 
     let data = Rc::new(ParallelData { value: 42 });
-    let a = data.clone();
+    //let a = data.clone();
     let b = data.clone();
     println!("{}", b.value);
 
@@ -399,4 +401,10 @@ fn main() {
     payment2.process_payment();
     let payment3 = PaymentEx::new(PaymentMethod::Bitcoin, 0.05, "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa".to_string());
     payment3.process_payment();
+
+    let user = UserEx::new(123, "Alice".to_string());
+    println!("User Id: {}", user.get_id());
+
+    let user_deref = UserDeref::new("Alice".to_string());
+    println!("UserName: {}", user_deref.get_user_name());
 }
