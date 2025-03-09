@@ -37,3 +37,7 @@ pub mod practice_enum1;
 pub mod practice_enum2;
 pub mod practice_new_type1;
 pub mod practice_new_type2;
+pub mod practice_new_type3;
+pub mod practice_new_type4;
+pub mod practice_new_type5;
+pub mod practice_phantom_data1;

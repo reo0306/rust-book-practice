@@ -45,6 +45,10 @@ use generic_practice::practices::{
     practice_enum2::{PaymentMethod, PaymentEx},
     practice_new_type1::UserEx,
     practice_new_type2::UserDeref,
+    practice_new_type3::UserDerefEx,
+    practice_new_type4::{Celsius, Fahrenheit},
+    practice_new_type5::{Usd, Jpy},
+    practice_phantom_data1::{Amount, UsdEx, JpyEx},
 };
 
 fn main() {
@@ -407,4 +411,23 @@ fn main() {
 
     let user_deref = UserDeref::new("Alice".to_string());
     println!("UserName: {}", user_deref.get_user_name());
+
+    let user_deref_ex = UserDerefEx::new(102, "Alice".to_string());
+    println!("User ID: {}", user_deref_ex.get_id());
+    println!("User Name: {}", user_deref_ex.get_name());
+
+    let celsius = Celsius(25.0);
+    println!("25C in Fahrenheit: {}", celsius.to_fahrenheit());
+    let fahrenheit = Fahrenheit(77.0);
+    println!("77C in Celsius: {}", fahrenheit.to_celsius());
+
+    let usd = Usd(10.0);
+    println!("10 USD in JPY: {}", usd.to_jpy());
+    let jpy = Jpy(1500.0);
+    println!("1500 JPY in USD: {}", jpy.to_usd());
+
+    let usd_ex = Amount::<UsdEx>::new(10.0);
+    println!("10 USD in JPY: {}", usd_ex.to_jpy().get_value());
+    let jpy_ex = Amount::<JpyEx>::new(1500.0);
+    println!("1500 JPY in USD: {}", jpy_ex.to_usd().get_value());
 }
