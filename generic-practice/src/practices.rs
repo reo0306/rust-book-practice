@@ -41,3 +41,5 @@ pub mod practice_new_type3;
 pub mod practice_new_type4;
 pub mod practice_new_type5;
 pub mod practice_phantom_data1;
+pub mod practice_phantom_data2;
+pub mod practice_phantom_data3;

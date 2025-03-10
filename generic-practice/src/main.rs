@@ -49,6 +49,8 @@ use generic_practice::practices::{
     practice_new_type4::{Celsius, Fahrenheit},
     practice_new_type5::{Usd, Jpy},
     practice_phantom_data1::{Amount, UsdEx, JpyEx},
+    practice_phantom_data2::{Id, Name, UserId, UserName, ProductId, ProductName, PhantomUser, PhantomProduct},
+    practice_phantom_data3::{Database, Disconnected, Connected},
 };
 
 fn main() {
@@ -430,4 +432,13 @@ fn main() {
     println!("10 USD in JPY: {}", usd_ex.to_jpy().get_value());
     let jpy_ex = Amount::<JpyEx>::new(1500.0);
     println!("1500 JPY in USD: {}", jpy_ex.to_usd().get_value());
+
+    let phantom_user = PhantomUser::new(Id::<UserId>::new(1), Name::<UserName>::new("Alice".to_string()));
+    println!("User Id: {}, Name: {}", phantom_user.id.get_id(), phantom_user.name.get_name());
+    let phantom_product = PhantomProduct::new(Id::<ProductId>::new(100), Name::<ProductName>::new("Laptop".to_string()));
+    println!("Product Id: {}, Name: {}", phantom_product.id.get_id(), phantom_product.name.get_name());
+
+    let db = Database::<Disconnected>::new();
+    let db = db.connect();
+    println!("{}", db.fetch_data());
 }
