@@ -50,7 +50,9 @@ use generic_practice::practices::{
     practice_new_type5::{Usd, Jpy},
     practice_phantom_data1::{Amount, UsdEx, JpyEx},
     practice_phantom_data2::{Id, Name, UserId, UserName, ProductId, ProductName, PhantomUser, PhantomProduct},
-    practice_phantom_data3::{Database, Disconnected, Connected},
+    practice_phantom_data3::{Database, Disconnected},
+    practice_phantom_data4::{Order, Pending},
+    practice_phantom_data5::{PhantomDataFile, Closed},
 };
 
 fn main() {
@@ -441,4 +443,17 @@ fn main() {
     let db = Database::<Disconnected>::new();
     let db = db.connect();
     println!("{}", db.fetch_data());
+
+    let order = Order::<Pending>::new();
+    println!("{}", order.get_state());
+    let order = order.process();
+    println!("{}", order.get_state());
+    let order = order.ship();
+    println!("{}", order.get_state());
+
+    let file = PhantomDataFile::<Closed>::new();
+    let mut file = file.open("log.txt").expect("Open Error");
+    let contents = file.read().expect("Read Error");
+    println!("{}", contents);
+    let _file = file.close();
 }
