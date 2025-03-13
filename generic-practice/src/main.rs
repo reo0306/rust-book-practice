@@ -53,6 +53,7 @@ use generic_practice::practices::{
     practice_phantom_data3::{Database, Disconnected},
     practice_phantom_data4::{Order, Pending},
     practice_phantom_data5::{PhantomDataFile, Closed},
+    practice_thread_cannel1::PracticeThreadChannel1,
 };
 
 fn main() {
@@ -456,4 +457,6 @@ fn main() {
     let contents = file.read().expect("Read Error");
     println!("{}", contents);
     let _file = file.close();
+
+    PracticeThreadChannel1::exec();
 }

@@ -45,3 +45,4 @@ pub mod practice_phantom_data2;
 pub mod practice_phantom_data3;
 pub mod practice_phantom_data4;
 pub mod practice_phantom_data5;
+pub mod practice_thread_cannel1;
