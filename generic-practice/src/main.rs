@@ -54,6 +54,7 @@ use generic_practice::practices::{
     practice_phantom_data4::{Order, Pending},
     practice_phantom_data5::{PhantomDataFile, Closed},
     practice_thread_cannel1::PracticeThreadChannel1,
+    practice_thread1::PracticeThread1,
 };
 
 fn main() {
@@ -459,4 +460,5 @@ fn main() {
     let _file = file.close();
 
     PracticeThreadChannel1::exec();
+    PracticeThread1::exec();
 }
