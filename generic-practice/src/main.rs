@@ -55,6 +55,9 @@ use generic_practice::practices::{
     practice_phantom_data5::{PhantomDataFile, Closed},
     practice_thread_cannel1::PracticeThreadChannel1,
     practice_thread1::PracticeThread1,
+    practice_thread2::PracticeThread2,
+    practice_thread3::PracticeThread3,
+    practice_macro1::PracticeMacro1,
 };
 
 fn main() {
@@ -461,4 +464,7 @@ fn main() {
 
     PracticeThreadChannel1::exec();
     PracticeThread1::exec();
+    PracticeThread2::exec();
+    PracticeThread3::exec();
+    PracticeMacro1::exec();
 }

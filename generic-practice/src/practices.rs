@@ -47,3 +47,6 @@ pub mod practice_phantom_data4;
 pub mod practice_phantom_data5;
 pub mod practice_thread_cannel1;
 pub mod practice_thread1;
+pub mod practice_thread2;
+pub mod practice_thread3;
+pub mod practice_macro1;
