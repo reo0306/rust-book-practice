@@ -50,3 +50,4 @@ pub mod practice_thread1;
 pub mod practice_thread2;
 pub mod practice_thread3;
 pub mod practice_macro1;
+pub mod practice_macro2;

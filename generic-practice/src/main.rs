@@ -58,6 +58,7 @@ use generic_practice::practices::{
     practice_thread2::PracticeThread2,
     practice_thread3::PracticeThread3,
     practice_macro1::PracticeMacro1,
+    practice_macro2::PracticeMacro2,
 };
 
 fn main() {
@@ -467,4 +468,5 @@ fn main() {
     PracticeThread2::exec();
     PracticeThread3::exec();
     PracticeMacro1::exec();
+    PracticeMacro2::exec();
 }
