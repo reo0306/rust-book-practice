@@ -60,6 +60,7 @@ use generic_practice::practices::{
     practice_macro1::PracticeMacro1,
     practice_macro2::PracticeMacro2,
     practice_macro3::PracticeMacro3,
+    practice_macro4::PracticeMacro4,
 };
 
 fn main() {
@@ -471,4 +472,5 @@ fn main() {
     PracticeMacro1::exec();
     PracticeMacro2::exec();
     PracticeMacro3::exec();
+    PracticeMacro4::exec();
 }
