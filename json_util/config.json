@@ -1,0 +1,6 @@
+{
+    "app_name": "MyApp",
+    "port": 8080,
+    "debug": true,
+    "allowed_ips": ["192.168.0.1", "192.168.0.2"]
+}
